@@ -43,4 +43,4 @@ jobs:
     - name: Run static checks
       run: |
         cd Custom_PriceTag_AccesPoint/ESP32_Async_PlatformIO/
-        pio check -v
+        pio check -v –skip-packages
