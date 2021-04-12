@@ -10,9 +10,14 @@
 #include <FS.h>
 #if defined(ESP32)
 #include "SPIFFS.h"
-#endif
 #include <ESPmDNS.h>
 #include <WiFi.h>
+#endif
+#ifdef ARDUINO_ARCH_ESP8266
+#include <ESP8266WiFi.h>
+#include <ESP8266mDNS.h>
+#include <Hash.h>
+#endif
 #include "web.h"
 #include <AsyncTCP.h>
 #include <ESPAsyncWebServer.h>
