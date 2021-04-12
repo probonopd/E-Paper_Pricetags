@@ -39,8 +39,3 @@ jobs:
       with:
         name: Artifacts
         path: Custom_PriceTag_AccesPoint/ESP32_Async_PlatformIO/.pio/build/**/firmware.bin
-        
-    - name: Run static checks
-      run: |
-        cd Custom_PriceTag_AccesPoint/ESP32_Async_PlatformIO/
-        pio check -v –-skip-packages
