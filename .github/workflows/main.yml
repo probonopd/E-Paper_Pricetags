@@ -5,16 +5,19 @@ on: [push, pull_request]
 jobs:
   platformio:
     runs-on: ubuntu-latest
+    
     steps:
       - name: Checkout
         uses: actions/checkout@v2
         with:
           submodules: 'recursive'
+          
       - name: Install PlatformIO using pip
         run: |
              sudo apt-get install python3-setuptools python3-wheel
              pip3 install platformio
              echo "$HOME/.local/bin" >> $GITHUB_PATH
+             
       - name: Build using PlatformIO
       - run: |
              cd ./Custom_PriceTag_AccesPoint/ESP32_Async_PlatformIO
