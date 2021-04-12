@@ -33,8 +33,14 @@ jobs:
       run: |
         cd Custom_PriceTag_AccesPoint/ESP32_Async_PlatformIO/
         pio run
+        ls -lh .pio/build/esp32doit-devkit-v1/firmware.bin
 
+    - uses: actions/upload-artifact@v2
+      with:
+        name: Upload artifacts
+        path: Custom_PriceTag_AccesPoint/ESP32_Async_PlatformIO/.pio/build/**/firmware.bin
+        
     - name: Run static checks
       run: |
         cd Custom_PriceTag_AccesPoint/ESP32_Async_PlatformIO/
-        pio check
+        pio check -v
