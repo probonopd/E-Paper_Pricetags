@@ -12,14 +12,15 @@
 #include "SPIFFS.h"
 #include <ESPmDNS.h>
 #include <WiFi.h>
+#include <AsyncTCP.h>
 #endif
 #ifdef ARDUINO_ARCH_ESP8266
 #include <ESP8266WiFi.h>
 #include <ESP8266mDNS.h>
 #include <Hash.h>
+#include <ESPAsyncTCP.h>
 #endif
 #include "web.h"
-#include <AsyncTCP.h>
 #include <ESPAsyncWebServer.h>
 #include <SPIFFSEditor.h>
 #include "utils.h"
