@@ -3,7 +3,8 @@ name: PlatformIO
 on: [push, pull_request]
 
 jobs:
-  platformio:
+  build:
+    name: PlatformIO
     runs-on: ubuntu-latest
     
     steps:
