@@ -37,10 +37,10 @@ jobs:
 
     - uses: actions/upload-artifact@v2
       with:
-        name: Upload artifacts
+        name: Artifacts
         path: Custom_PriceTag_AccesPoint/ESP32_Async_PlatformIO/.pio/build/**/firmware.bin
         
     - name: Run static checks
       run: |
         cd Custom_PriceTag_AccesPoint/ESP32_Async_PlatformIO/
-        pio check -v –skip-packages
+        pio check -v –-skip-packages
