@@ -30,7 +30,11 @@ jobs:
         cp RFV3/wlan_gitignore_replacement.h RFV3/wlan.h
  
     - name: Build with PlatformIO
-      run: pio run
+      run: |
+        cd Custom_PriceTag_AccesPoint/ESP32_Async_PlatformIO/
+        pio run
 
     - name: Run static checks
-      run: pio check
+      run: |
+        cd Custom_PriceTag_AccesPoint/ESP32_Async_PlatformIO/
+        pio check
