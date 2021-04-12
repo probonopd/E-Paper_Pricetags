@@ -9,9 +9,16 @@
 #include "class.h"
 #include "interval_timer.h"
 #include <FS.h>
-#include <SPIFFS.h>
+#if defined(ESP32)
+#include "SPIFFS.h"
 #include <ESPmDNS.h>
 #include <WiFi.h>
+#endif
+#ifdef ARDUINO_ARCH_ESP8266
+#include <ESP8266WiFi.h>
+#include <ESP8266mDNS.h>
+#include <Hash.h>
+#endif
 #include <AsyncTCP.h>
 #include <ESPAsyncWebServer.h>
 #include <SPIFFSEditor.h>
