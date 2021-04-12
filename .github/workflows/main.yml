@@ -6,11 +6,18 @@ jobs:
   platformio:
     runs-on: ubuntu-latest
     steps:
-      - run: sudo apt-get install python3-setuptools python3-wheel
-      - run: pip3 install platformio
-      - run: echo "$HOME/.local/bin" >> $GITHUB_PATH
-      - uses: actions/checkout@v2
-      - run: cd ./Custom_PriceTag_AccesPoint/ESP32_Async_PlatformIO
-      - run: cp RFV3/wlan_gitignore_replacement.h RFV3/wlan.h
-      - run: platformio check --fail-on-defect low --fail-on-defect medium --fail-on-defect high --skip-packages -v
-      - run: platformio run
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: 'recursive'
+      - name: Install PlatformIO using pip
+        run: |
+             sudo apt-get install python3-setuptools python3-wheel
+             pip3 install platformio
+             echo "$HOME/.local/bin" >> $GITHUB_PATH
+      - name: Build using PlatformIO
+      - run: |
+             cd ./Custom_PriceTag_AccesPoint/ESP32_Async_PlatformIO
+             cp RFV3/wlan_gitignore_replacement.h RFV3/wlan.h
+             platformio check --fail-on-defect low --fail-on-defect medium --fail-on-defect high --skip-packages -v
+             platformio run
