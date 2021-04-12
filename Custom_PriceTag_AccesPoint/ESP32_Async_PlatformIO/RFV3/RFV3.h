@@ -8,7 +8,9 @@
 #include "class.h"
 #include "interval_timer.h"
 #include <FS.h>
+#if defined(ARDUINO_ARCH_ESP32)
 #include <SPIFFS.h>
+#endif //ARDUINO_ARCH_ESP32
 #include <ESPmDNS.h>
 #include <WiFi.h>
 #include "web.h"
