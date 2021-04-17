@@ -10,6 +10,8 @@
 #include <SPIFFS.h>
 #include "arith.h"
 #include "settings.h"
+#include <PubSubClient.h>
+#include "mqtt.h"
 
 #define _receive_size 0x1000
 #define _send_size 65535
@@ -125,6 +127,8 @@ void save_receive_buffer()
     Serial.print("Received data packet:");
     Serial.println(data_received);
     appendFile("/answers.txt", data_received);
+
+    client.publish("displays/receive", "Msg from display, TODO: Put it in here"); // Publish on MQTT
 
     last_receive_string = "Msg from display " + data_received;
     length_to_receive = 0;

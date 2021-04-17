@@ -19,6 +19,8 @@
 #include "mode_wu_activation.h"
 #include "mode_wun_activation.h"
 #include "mode_activation.h"
+#include <PubSubClient.h>
+#include "mqtt.h"
 
 class ModePlaceholder : public mode_class
 {
@@ -69,6 +71,8 @@ void setup()
   init_interrupt();
   init_timer();
   init_web();
+  client.setServer(MQTT_BROKER, 1883);
+  client.setCallback(mqtt_callback);
 }
 
 void loop()
@@ -118,6 +122,31 @@ void loop()
     interrupt_counter = 0;
     currentMode->new_interval();
   }
+
+  // MQTT
+  if (!client.connected()) {
+    long now = millis();
+    if (now - lastReconnectAttempt > 5000) {
+      lastReconnectAttempt = now;
+      if (reconnect()) {
+        lastReconnectAttempt = 0;
+      }
+    }
+  } else {
+    // Client connected
+    client.loop();
+  }
+
+}
+
+void mqtt_callback(char* topic, byte* payload, unsigned int length) {
+    String msg;
+    for (byte i = 0; i < length; i++) {
+        char tmp = char(payload[i]);
+        msg += tmp;
+    }
+    Serial.println(msg);
+    Serial.println("TODO: Wait until idle and then hand over to function instead of printing this here");
 }
 
 void set_mode_idle()
